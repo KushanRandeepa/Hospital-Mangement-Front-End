@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-appointment-root',
-  imports: [RouterLink,RouterOutlet],
+  imports: [RouterLink,RouterOutlet,RouterLinkActive],
   templateUrl: './appointment-root.component.html',
   styleUrl: './appointment-root.component.css'
 })

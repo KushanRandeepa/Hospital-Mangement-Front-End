@@ -27,8 +27,6 @@ export class Patient {
         this.allergies = allergies;
         this.email = email;
     }
-    
-   
     public getName(): string {
         return this.name;
     }
