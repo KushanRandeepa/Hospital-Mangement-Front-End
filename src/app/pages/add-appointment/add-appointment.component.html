@@ -1,1 +1,159 @@
-<p>add-appointment works!</p>
+<div class="p-4 md:p-5">
+    <form class="grid gap-4 mb-4 grid-cols-2" [formGroup]="addAppointmentForm" (ngSubmit)="onSubmit()">
+        <div class="col-span-2  sm:col-span-1">
+            <label for="aapointmentTypes" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select
+                anoption</label>
+            <select id="aapointmentTypes" formControlName="type"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <option selected>Choose a Appointment Type</option>
+                <option value="Face-to-face">Face-to-face</option>
+                <option value="Video consultation">Video consultation</option>
+                <option value="Inpatient">Inpatient</option>
+                <option value="Follow-up">Follow-up</option>
+                <option value="Urgent">Urgent</option>
+                <option value="Recheck">Recheck</option>
+            </select>
+            <div class="mb-3 text-red-500">
+                @if(addAppointmentForm.get('type')?.hasError('required') && addAppointmentForm.get('type')?.touched){
+                This feild is required!
+                }
+            </div>
+        </div>
+        <div class="col-span-2 sm:col-span-1">
+            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">QR</label>
+            <input type="text" formControlName="qr"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+            <div class="mb-3 text-red-500">
+                @if(addAppointmentForm.get('qr')?.hasError('required') && addAppointmentForm.get('qr')?.touched){
+                This feild is required!
+                }
+            </div>
+        </div>
+        <div class="col-span-2">
+            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+            <textarea id="message" rows="4" formControlName="description"
+                class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Leave a comment..."></textarea>
+        </div>
+
+        <div>
+            <label for="aapointmentTypes" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select
+                anStatus</label>
+            <select id="aapointmentTypes" formControlName="status"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <option selected>Choose a Appointment Status</option>
+                <option value="Arrived">Arrived</option>
+                <option value="In Room">In Room</option>
+                <option value="Ready">Ready</option>
+                <option value="Finished">Finished</option>
+                <option value="Activated in EPR">Activated in EPR</option>
+                <option value="No Show">No Show</option>
+                <option value="LWBS">LWBS</option>
+            </select>
+            <div class="mb-3 text-red-500">
+                @if(addAppointmentForm.get('status')?.hasError('required') &&
+                addAppointmentForm.get('status')?.touched){
+                This feild is required!
+                }
+            </div>
+        </div>
+        <div></div>
+        <div class="col-span-1 sm:col-span-1">
+            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Room Number</label>
+            <input type="number" formControlName="roomNumber"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+        </div>
+        <div class="col-span-2 sm:col-span-1">
+            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Que Number</label>
+            <input type="number" formControlName="queNumber"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+        </div>
+        <div class="col-span-2 sm:col-span-1">
+            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">PatientID</label>
+            <input type="text" formControlName="patientId"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+            <div class="mb-3 text-red-500">
+                @if(addAppointmentForm.get('patientId')?.hasError('required') &&
+                addAppointmentForm.get('patientId')?.touched){
+                This feild is required!
+                }
+            </div>
+        </div>
+        <div class="col-span-2 sm:col-span-1">
+            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">adminID</label>
+            <input type="text" formControlName="adminId"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+            <div class="mb-3 text-red-500">
+                @if(addAppointmentForm.get('adminId')?.hasError('required') &&
+                addAppointmentForm.get('adminId')?.touched){
+                This feild is required!
+                }
+            </div>
+        </div>
+
+        <div>
+            <div class="relative max-w-sm">
+                <label for="time" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Schedule
+                    Date</label>
+                <div class="absolute inset-y-0 start-0 flex items-center ps-3 pt-6 pointer-events-none">
+                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                    </svg>
+                </div>
+                <input id="datepicker-autohide" datepicker datepicker-autohide type="text"
+                    formControlName="appointmentDate"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Select date">
+                <!-- <div class="mb-3 text-red-500">
+                    @if(addAppointmentForm.get('appointmentDate')?.hasError('required') && addAppointmentForm.get('appointmentDate')?.touched){
+                    This feild is required!
+                    }
+                </div> -->
+            </div>
+        </div>
+
+        <div>
+            <label for="time" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select time:</label>
+            <div class="flex">
+                <input type="time" id="time" formControlName="appointmentTime"
+                    class="rounded-none rounded-s-lg bg-gray-50 border text-gray-900 leading-none focus:ring-blue-500 focus:border-blue-500 block flex-1 w-full text-sm border-gray-300 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    min="09:00" max="18:00" value="00:00" required>
+
+                <span
+                    class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-s-0 border-s-0 border-gray-300 rounded-e-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                        <path fill-rule="evenodd"
+                            d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm11-4a1 1 0 1 0-2 0v4a1 1 0 0 0 .293.707l3 3a1 1 0 0 0 1.414-1.414L13 11.586V8Z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </span>
+            </div>
+            <div class="mb-3 text-red-500">
+                @if(addAppointmentForm.get('appointmentTime')?.hasError('required') &&
+                addAppointmentForm.get('appointmentTime')?.touched){
+                This feild is required!
+                }
+            </div>
+        </div>
+
+        <div>
+            <button type="submit" [disabled]="addAppointmentForm.invalid || addAppointmentForm.pending"
+                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Book
+                Appointment</button>
+        </div>
+
+    </form>
+    <!-- <div class="flex items-start mb-5">
+        <div class="flex items-center h-5">
+            <input id="remember" type="checkbox" value=""
+                class="w-4 h-4 border border-gray-300 rounded-sm bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
+                required />
+        </div>
+        <label for="checkbox-1" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">I agree to the <a
+                href="#" class="text-blue-600 hover:underline dark:text-blue-500">terms and conditions</a>.</label>
+    </div> -->
+
+</div>

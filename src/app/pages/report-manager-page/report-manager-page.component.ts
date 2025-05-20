@@ -3,7 +3,7 @@ import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-report-manager-page',
-  imports: [RouterLink],
+  imports: [],
   templateUrl: './report-manager-page.component.html',
   styleUrl: './report-manager-page.component.css'
 })
