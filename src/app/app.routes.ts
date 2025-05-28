@@ -11,11 +11,21 @@ import { AddAppointmentComponent } from './pages/add-appointment/add-appointment
 import { ReportRootComponent } from './pages/report-root/report-root.component';
 import { ReportManagerPageComponent } from './pages/report-manager-page/report-manager-page.component';
 import { AddReportComponent } from './pages/add-report/add-report.component';
+import { SignupPageComponent } from './pages/signup-page/signup-page.component';
+import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 
 export const routes: Routes = [
     {
         path:'',
+        component:LandingPageComponent
+    },
+    {
+        path:'login',
         component:LoginPageComponent
+    },
+    {
+        path:'signup',
+        component:SignupPageComponent
     },
     {
         path:'dashboard',
