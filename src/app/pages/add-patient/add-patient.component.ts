@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Patient } from '../../model/Patient';
+import { Patient } from '../../models/Patient';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2'
 

@@ -75,8 +75,4 @@ export class PatientManagerPageComponent {
 
   }
 
-
-
-
-
 }
