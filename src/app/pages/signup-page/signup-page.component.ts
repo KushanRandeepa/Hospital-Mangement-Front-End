@@ -8,7 +8,7 @@ import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-signup-page',
-  imports: [RouterLink, ReactiveFormsModule],
+  imports: [ ReactiveFormsModule],
   templateUrl: './signup-page.component.html',
   styleUrl: './signup-page.component.css'
 })
@@ -57,6 +57,6 @@ export class SignupPageComponent implements OnInit {
   }
 
 
-  
+
 }
 
