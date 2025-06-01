@@ -3,6 +3,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2'
+import { AuthServiceService } from '../../service/auth-service.service';
 
 @Component({
   selector: 'app-patient-manager-page',
@@ -14,12 +15,13 @@ export class PatientManagerPageComponent {
 
   public patientList: any = [];
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,private authService:AuthServiceService) {
     this.loadPatient();
   }
 
   loadPatient() {
-    this.http.get("http://localhost:8080/patient/get-all").subscribe(data => {
+    this.http.get("http://localhost:8080/patient/get-all",{
+            headers: { 'Authorization': `Bearer ${this.authService.getToken}` }}).subscribe(data => {
       this.patientList = data
     });
   }

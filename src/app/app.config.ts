@@ -4,7 +4,7 @@ import { provideZoneChangeDetection } from '@angular/core';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { routes } from './app.routes';
-import { AuthInterceptor } from './interceptor/auth.interceptor';
+import { AuthInterceptor } from './intercepter/auth.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
