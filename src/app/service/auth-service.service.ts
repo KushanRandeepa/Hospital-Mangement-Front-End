@@ -6,7 +6,7 @@ import { jwtDecode } from 'jwt-decode';
 
 export interface DecodedToken {
   sub: string;
-  roles: string[];
+  roles: string;
   iat?: number;
   exp?: number;
 }
@@ -22,17 +22,19 @@ export class AuthServiceService {
 
   }
 
-  loogin(loginDetail: any) {
+  login(loginDetail: any) {
     return this.http.post<any>('http://localhost:8080/login', loginDetail).pipe(
       tap((res: any) => {
         const token = res.token;
-        localStorage.setItem(this.authToken, res.token)
-       const decoded: any = jwtDecode(token);
-        console.log('✅ Logged in user role:', decoded.roles?.[0]);
-      }
-      )
+        if (token) {
+          localStorage.setItem(this.authToken, token);
+          const decoded: DecodedToken = jwtDecode(token);
+          console.log('✅ Logged in user role:', decoded.roles); // ✅ Now it's a string
+        }
+      })
     );
   }
+
 
   get getToken() {
     return localStorage.getItem(this.authToken);
@@ -48,26 +50,33 @@ export class AuthServiceService {
       try {
         return jwtDecode(token);
       } catch (e) {
-        console.error('❌ Token decoding failed', e);
+        console.error(' Token decoding failed:', e);
         return null;
       }
     }
     return null;
   }
 
- getUserRole(): string | null {
-    const token = this.getToken;
-    if (token) {
-      try {
-        const decoded: any = jwtDecode(token);
-        console.log('✅ Decoded token:', decoded);
-        return decoded.roles?.[0] || null;
-      } catch (e) {
-        console.error('❌ Failed to decode token for role', e);
-        return null;
-      }
-    }
-    return null;
+
+  getUserRole(): string | null {
+    const decoded = this.getDecodedToken();
+    return decoded?.roles || null;
+  }
+
+
+  logout(): void {
+    localStorage.removeItem(this.authToken);
+    this.router.navigateByUrl('/login').then(() => {
+      window.history.pushState(null, '', window.location.href);
+      window.onpopstate = () => {
+        window.history.pushState(null, '', window.location.href);
+      };
+    });
+  }
+
+  getUserId(): string | null {
+    const decoded = this.getDecodedToken();
+    return decoded?.sub || null;
   }
 
 

@@ -32,6 +32,7 @@ export class SignupPageComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log(this.signUpFormGroup.value);
     this.http.post<ApiResponse>('http://localhost:8080/signup', this.signUpFormGroup.value)
       .subscribe({
         next: (res) => {

@@ -18,11 +18,11 @@
                 class="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-xs-light"
                 placeholder="name@flowbite.com" required />
         </div>
-        <div class="mb-3 text-red-600">
+        <!-- <div class="mb-3 text-red-600">
             @if (signUpFormGroup.get('email')?.hasError('required') && signUpFormGroup.get('email')!.touched) {
             This feild is required!
             }
-        </div>
+        </div> -->
         <div class="mb-5">
             <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
                 password</label>
@@ -30,11 +30,11 @@
                 class="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-xs-light"
                 required />
         </div>
-        <div class="mb-3 text-red-600">
+        <!-- <div class="mb-3 text-red-600">
             @if (signUpFormGroup.get('password')?.hasError('required') && signUpFormGroup.get('password')!.touched) {
             This feild is required!
             }
-        </div>
+        </div> -->
         <div class="mb-5">
             <label for="repeat-password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Repeat
                 password</label>
@@ -42,39 +42,39 @@
                 class="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-xs-light"
                 required />
         </div>
-        <div class="mb-3 text-red-600">
+        <!-- <div class="mb-3 text-red-600">
             @if (signUpFormGroup.get('checkPassword')?.hasError('required') &&
             signUpFormGroup.get('checkPassword')!.touched) {
             This feild is required!
             }
-        </div>
+        </div> -->
         <div class="mb-5">
             <label for="repeat-password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                 Select your Role</label>
-            <select name="eole" id="role" formControlName="role"
+            <select id="role" formControlName="role"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                <option selected value="Patient">Patient</option>
-                <option value="Doctor">Doctor</option>
-                <option value="Nurse">Nurse</option>
-                <option value="Admin">Admin</option>
+                <option selected value="Patient">patient</option>
+                <option value="Doctor">doctor</option>
+                <option value="Nurse">nurse</option>
+                <option value="Admin">admin</option>
             </select>
         </div>
 
         <div class="flex items-start mb-5">
             <div class="flex items-center h-5">
-                <input checked id="checkbox-1" type="checkbox" value="" 
+                <input checked id="checkbox-1" type="checkbox" value=""
                     class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-circle focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
 
             </div>
             <label for="terms" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">I agree with the <a
                     href="#" class="text-blue-600 hover:underline dark:text-blue-500">terms and conditions</a></label>
         </div>
-        <div class="mb-3 text-red-600">
+        <!-- <div class="mb-3 text-red-600">
             @if (signUpFormGroup.get('password')?.hasError('requiredTrue') && signUpFormGroup.get('password')!.touched)
             {
             This feild is required!
             }
-        </div>
+        </div> -->
         <button type="submit" [disabled]="signUpFormGroup.invalid || signUpFormGroup.pending"
             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Register
             new account</button>

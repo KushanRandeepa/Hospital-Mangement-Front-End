@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthServiceService } from '../../service/auth-service.service';
 
 @Component({
   selector: 'app-login-page',
-  imports: [FormsModule,ReactiveFormsModule],
+  imports: [FormsModule, ReactiveFormsModule],
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.css'
 })
-export class LoginPageComponent implements OnInit{
+export class LoginPageComponent implements OnInit {
 
   constructor(private authService: AuthServiceService, private router: Router) {
 
@@ -17,26 +17,24 @@ export class LoginPageComponent implements OnInit{
   loginFormGroup !: FormGroup;
 
   ngOnInit(): void {
-    this.loginFormGroup=new FormGroup({
-   'username':new FormControl(null),
-   'password':new FormControl(null)
+    this.loginFormGroup = new FormGroup({
+      'username': new FormControl(null, [Validators.required]),
+      'password': new FormControl(null, [Validators.required])
     })
   }
 
-  
-
-
   onLogin() {
     console.log(this.loginFormGroup.value);
-    this.authService.loogin(this.loginFormGroup.value).subscribe({
+    this.authService.login(this.loginFormGroup.value).subscribe({
       next: (res) => {
         if (res.error) {
-          alert(res.error); 
+          alert(res.error);
         } else {
           this.router.navigate(['/dashboard/dashboard-page']);
           this.loginFormGroup.reset();
         }
       }
+
     })
   }
 }
