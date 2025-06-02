@@ -1,6 +1,6 @@
 <div class="text-sm text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
     <ul class="flex flex-wrap -mb-px text-center ">
-        <li  *ngIf="role === 'ROLE_PATIENT'" class="me-2">
+        <li  *ngIf="role?.includes('ROLE_ADMIN')" class="me-2">
             <a routerLink="add-patient" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
                 class="inline-block p-4  hover:text-gray-600 dark:hover:text-gray-300">Add Patient</a>
         </li>

@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Patient } from '../../models/Patient';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2'
+import { AuthServiceService } from '../../service/auth-service.service';
 
 @Component({
   selector: 'app-add-patient',
@@ -16,10 +17,11 @@ export class AddPatientComponent {
 
   isdisabled: boolean = true;
   isChecked: boolean = false;
+  role:string | null = null;
 
-
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,private authService :AuthServiceService) {
     this.isCheckedButton();
+    this.role = this.authService.getUserRole();
   }
 
   isCheckedButton() {

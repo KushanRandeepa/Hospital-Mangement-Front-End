@@ -13,17 +13,20 @@ import { CommonModule } from '@angular/common';
   styleUrl: './add-appointment.component.css'
 })
 export class AddAppointmentComponent implements OnInit {
-  role: string | null = null;
+role: string | null = null;
+  constructor(private http: HttpClient, public authService: AuthServiceService) {
 
-  constructor(private http: HttpClient, private authService: AuthServiceService) {
+    this.authService = authService
   }
   addAppointmentForm!: FormGroup;
 
   ngOnInit(): void {
-
-
-    this.role = this.authService.getUserRole();
-
+    this.role= this.authService.getUserRole();
+    console.log(this.role);
+    console.log(this.role?.includes('ROLE_DOCTOR')); 
+    console.log(this.role?.includes('ROLE_ADMIN'));
+     
+    
     this.addAppointmentForm = new FormGroup({
       'type': new FormControl(null, [Validators.required]),
       'qr': new FormControl(null, [Validators.required]),

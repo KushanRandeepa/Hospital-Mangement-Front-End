@@ -9,6 +9,7 @@ export interface DecodedToken {
   roles: string;
   iat?: number;
   exp?: number;
+  userId?: string;
 }
 
 @Injectable({
@@ -76,7 +77,7 @@ export class AuthServiceService {
 
   getUserId(): string | null {
     const decoded = this.getDecodedToken();
-    return decoded?.sub || null;
+    return decoded?.userId || null;
   }
 
 

@@ -1,18 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { AuthServiceService } from '../../service/auth-service.service';
 import Swal from 'sweetalert2';
+import { CommonModule, NgIf } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-navbar',
-  imports: [RouterLink],
+  imports: [RouterLink,NgIf],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
+  role:string|null=null 
+  
   constructor(private authService: AuthServiceService) {
-
+   
   }
+  ngOnInit(): void {
+    this.role=this.authService.getUserRole();  }
 
   logout() {
     Swal.fire({
