@@ -1,14 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
 import { AuthServiceService } from '../../service/auth-service.service';
 import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { PatientProfileComponent } from '../../profile/patient-profile/patient-profile.component';
 
 @Component({
   selector: 'app-dashboard-page',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule,RouterLink],
   templateUrl: './dashboard-page.component.html',
   styleUrl: './dashboard-page.component.css'
 })
@@ -23,31 +24,20 @@ export class DashboardPageComponent {
     console.log(this.id)
   }
   addPatientDetails() {
-    this.http.get(`http://localhost:8080/patient/search-by-id/${this.id}`,{
-            headers: { 'Authorization': `Bearer ${this.authService.getToken}` }}
+    this.http.get(`http://localhost:8080/patient/search-by-id/${this.id}`, {
+      headers: { 'Authorization': `Bearer ${this.authService.getToken}` }
+    }
     ).subscribe(data => {
       this.patientdetails = data;
       console.log(this.patientdetails);
     });
   }
+  updatePatientDetail: any = {}
 
   updatePatient() {
     console.log(this.patientdetails);
-
-    Swal.fire({
-      title: "Do you want to save the changes?",
-      showDenyButton: true,
-      showCancelButton: true,
-      confirmButtonText: "Save",
-      denyButtonText: `Don't save`
-    }).then((result) => {
-      /* Read more about isConfirmed, isDenied below */
-      if (result.isConfirmed) {
-        this.http.put("http://localhost:8080/patient/update", this.patientdetails)
-        Swal.fire("Updated!", "", "success");
-      } else if (result.isDenied) {
-        Swal.fire("Changes are not update", "", "info");
-      }
-    });
+    this.updatePatientDetail = this.patientdetails;
+    this.http.put("http://localhost:8080/patient/update", this.updatePatientDetail).subscribe(data => {
+      Swal.fire("Updated!", "", "success");});
   }
 }

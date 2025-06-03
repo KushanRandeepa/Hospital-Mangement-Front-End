@@ -13,87 +13,95 @@ import { ReportManagerPageComponent } from './pages/report-manager-page/report-m
 import { AddReportComponent } from './pages/add-report/add-report.component';
 import { SignupPageComponent } from './pages/signup-page/signup-page.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
+import { PatientProfileComponent } from './profile/patient-profile/patient-profile.component';
 
 export const routes: Routes = [
     {
-        path:'',
-        component:LandingPageComponent
+        path: '',
+        component: LandingPageComponent
     },
     {
-        path:'login',
-        component:LoginPageComponent
+        path: 'login',
+        component: LoginPageComponent
     },
     {
-        path:'signup',
-        component:SignupPageComponent
+        path: 'signup',
+        component: SignupPageComponent
     },
     {
-        path:'dashboard',
-        component:DashboardComponent,
-        children:[
+        path: 'dashboard',
+        component: DashboardComponent,
+        children: [
+
             {
-                path:'appointment',
-                component:AppointmentRootComponent,
-                children:[
+                path: 'appointment',
+                component: AppointmentRootComponent,
+                children: [
                     {
-                        path:'add-appointment',
-                        component:AddAppointmentComponent
+                        path: 'add-appointment',
+                        component: AddAppointmentComponent
                     },
                     {
-                        path:'',
-                        component:AppointmentManagerPageComponent
+                        path: '',
+                        component: AppointmentManagerPageComponent
                     },
                     {
-                        path:'view-all',
-                        component:AppointmentManagerPageComponent
+                        path: 'view-all',
+                        component: AppointmentManagerPageComponent
                     }
                 ]
             },
             {
-                path:'patient',
-                component:PatientRootComponent,
-                children:[
+                path: 'patient',
+                component: PatientRootComponent,
+                children: [
                     {
-                        path:'',
-                        component:PatientManagerPageComponent
+                        path: '',
+                        component: PatientManagerPageComponent
 
                     },
                     {
-                        path:'add-patient',
-                        component:AddPatientComponent
+                        path: 'add-patient',
+                        component: AddPatientComponent
 
                     },
                     {
-                         path:'view-all',
-                        component:PatientManagerPageComponent
+                        path: 'view-all',
+                        component: PatientManagerPageComponent
 
                     }
-                    
-                    
+
+
                 ]
             },
             {
-                path:'medical-report',
-                component:ReportRootComponent,
-                children:[
+                path: 'medical-report',
+                component: ReportRootComponent,
+                children: [
                     {
-                        path:'',
-                        component:ReportManagerPageComponent
+                        path: '',
+                        component: ReportManagerPageComponent
                     },
                     {
-                        path:'view-all',
-                        component:ReportManagerPageComponent
+                        path: 'view-all',
+                        component: ReportManagerPageComponent
                     },
                     {
-                        path:'add-medical-report',
-                        component:AddReportComponent
+                        path: 'add-medical-report',
+                        component: AddReportComponent
                     }
                 ]
             },
             {
-                path:'dashboard-page',
-                component:DashboardPageComponent
-            }          
+                path: 'dashboard-page',
+                component: DashboardPageComponent,
+                
+            },
+            {
+                path: 'patient-profile',
+                component: PatientProfileComponent
+            }
+
         ]
     }
 ];

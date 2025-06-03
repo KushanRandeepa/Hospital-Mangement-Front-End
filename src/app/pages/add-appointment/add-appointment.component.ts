@@ -14,6 +14,7 @@ import { CommonModule } from '@angular/common';
 })
 export class AddAppointmentComponent implements OnInit {
 role: string | null = null;
+customID:string | null=null;
   constructor(private http: HttpClient, public authService: AuthServiceService) {
 
     this.authService = authService
@@ -25,7 +26,7 @@ role: string | null = null;
     console.log(this.role);
     console.log(this.role?.includes('ROLE_DOCTOR')); 
     console.log(this.role?.includes('ROLE_ADMIN'));
-     
+     this.customID=this.authService.getUserId();
     
     this.addAppointmentForm = new FormGroup({
       'type': new FormControl(null, [Validators.required]),
@@ -33,24 +34,25 @@ role: string | null = null;
       'description': new FormControl(null),
       'status': new FormControl(null, [Validators.required]),
       'roomNumber': new FormControl(null, [Validators.required]),
-      patientId: new FormControl(
-        this.role=== 'Patient' ? this.authService.getUserId() : null,
-        this.role === 'Admin' ? [Validators.required] : []
-      ),
+      'patientId': new FormControl( this.customID),
       'appointmentDate': new FormControl(null, [Validators.required]),
       'appointmentTime': new FormControl(null, [Validators.required])
+
     })
+        console.log(this.addAppointmentForm.value);
+
   }
   onSubmit() {
     console.log(this.addAppointmentForm.value);
     this.http.post("http://localhost:8080/appointment/add-appointment", this.addAppointmentForm.value).subscribe(data => {
+      console.log(  data);
       Swal.fire({
-        position: "top-end",
-        icon: "success",
-        title: "Your work has been saved",
-        showConfirmButton: false,
-        timer: 1500
-      });
+                    position: "top-end",
+                    icon: "success",
+                    title: "Your Sign Up Successfully",
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
     });
     this.addAppointmentForm.reset();
   }

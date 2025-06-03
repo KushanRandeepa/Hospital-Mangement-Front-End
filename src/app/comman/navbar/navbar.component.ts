@@ -7,18 +7,23 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-navbar',
-  imports: [RouterLink,NgIf],
+  imports: [RouterLink, NgIf,],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent implements OnInit {
-  role:string|null=null 
-  
+  role: string | null = null
+  username: string | null = null
+  customeId: string | null = null
+
   constructor(private authService: AuthServiceService) {
-   
+
   }
   ngOnInit(): void {
-    this.role=this.authService.getUserRole();  }
+    this.role = this.authService.getUserRole();
+    this.customeId = this.authService.getUserId();
+    this.username = this.authService.getUserName();
+  }
 
   logout() {
     Swal.fire({
@@ -37,9 +42,9 @@ export class NavbarComponent implements OnInit {
           position: "top-end",
           icon: "success"
         });
-         this.authService.logout();
+        this.authService.logout();
       }
     });
-   
+
   }
 }
