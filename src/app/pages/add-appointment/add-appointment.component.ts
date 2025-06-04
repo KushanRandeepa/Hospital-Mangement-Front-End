@@ -36,7 +36,8 @@ customID:string | null=null;
       'roomNumber': new FormControl(null, [Validators.required]),
       'patientId': new FormControl( this.customID),
       'appointmentDate': new FormControl(null, [Validators.required]),
-      'appointmentTime': new FormControl(null, [Validators.required])
+      'appointmentTime': new FormControl(null, [Validators.required]),
+      'paymentStatus': new FormControl('UNPAID') // ✅ Added this line
 
     })
         console.log(this.addAppointmentForm.value);

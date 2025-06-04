@@ -14,6 +14,8 @@ import { AddReportComponent } from './pages/add-report/add-report.component';
 import { SignupPageComponent } from './pages/signup-page/signup-page.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { PatientProfileComponent } from './profile/patient-profile/patient-profile.component';
+import { PaymentManagerPageComponent } from './pages/payment-manager-page/payment-manager-page.component';
+import { PaymentProcessesManagerComponent } from './pages/payment-processes-manager/payment-processes-manager.component';
 
 export const routes: Routes = [
     {
@@ -48,6 +50,10 @@ export const routes: Routes = [
                     {
                         path: 'view-all',
                         component: AppointmentManagerPageComponent
+                    },
+                    {
+                        path:'payment',
+                        component:PaymentManagerPageComponent
                     }
                 ]
             },
@@ -70,7 +76,6 @@ export const routes: Routes = [
                         component: PatientManagerPageComponent
 
                     }
-
 
                 ]
             },
@@ -100,6 +105,10 @@ export const routes: Routes = [
             {
                 path: 'patient-profile',
                 component: PatientProfileComponent
+            },
+            {
+                path: 'payments',
+                component:PaymentProcessesManagerComponent
             }
 
         ]

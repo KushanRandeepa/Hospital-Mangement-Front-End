@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { AuthServiceService } from '../../service/auth-service.service';
 
 @Component({
   selector: 'app-appointment-manager-page',
@@ -12,25 +13,33 @@ import Swal from 'sweetalert2';
 })
 export class AppointmentManagerPageComponent {
   appointmentList: any = []
-
-  constructor(private http: HttpClient) {
+  role: string | null = null;
+  constructor(private http: HttpClient, private authService: AuthServiceService) {
     this.loadAppointmentList();
+    this.role = this.authService.getUserRole();
   }
 
   loadAppointmentList() {
-    this.http.get("http://localhost:8080/appointment/get-all").subscribe(data => {
-      this.appointmentList = data;
-      console.log(data)
-    });
+    if (this.authService.getUserRole() == 'ROLE_PATIENT') {
+      this.http.get(`http://localhost:8080/appointment/search-by-patientId/${this.authService.getUserId()}`).subscribe(data => {
+         this.appointmentList = data;
+        console.log(data)
+      });
+    } else {
+      this.http.get("http://localhost:8080/appointment/get-all").subscribe(data => {
+        this.appointmentList = data;
+        console.log(data)
+      });
+    }
 
   }
 
   selectAppointment(appointment: any) {
-
+console.log(appointment);
 
   }
-  deleteAppointment(id:string) {
-    
+  deleteAppointment(id: string) {
+
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
